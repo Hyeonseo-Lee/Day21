@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
 // IP 165.246.115.165 포트 20000
 
 public class SimpleEchoServer implements Runnable {
@@ -16,6 +17,7 @@ public class SimpleEchoServer implements Runnable {
         this.clientSocket = clientSocket;
     }
     public static void main(String[] args) {
+
         System.out.println("다중 접속 에코 서버");
         try (ServerSocket serverSocket = new ServerSocket(20000)) {
             while (true) {
@@ -39,7 +41,7 @@ public class SimpleEchoServer implements Runnable {
         ) {
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
-                System.out.println(Thread.currentThread() +" 클라이언트가 보낸 메세지 : " + inputLine);
+                System.out.println(clientSocket.getRemoteSocketAddress().toString() + Thread.currentThread() +" 클라이언트가 보낸 메세지 : " + inputLine);
                 out.println(inputLine);
             }
             System.out.println(Thread.currentThread() +" 클라이언트가 종료됨"); }
